@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h4 class="text-center">All employee page</h4>
+<div class="container card">
+    <h5 class="text-decoration-underline">list of Employees</h5>
+</div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Employee Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date hired</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if allemployees %}
+            {% for eachemployee in allemployees %}
+                <tr>
+                    <td>{{eachemployee.id}}</td>
+                    <td>{{eachemployee.firstName}}</td>
+                    <td>{{eachemployee.lastName}}</td>
+                    <td>{{eachemployee.hireDate}}</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="{% url 'employeedetails' eachemployee.id %}">Details</a>
+                        <a class="btn btn-warning btn-sm" href="{% url 'employeeupdate' eachemployee.id %}">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'employeedelete' eachemployee.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+
+    <div>
+        <!-- <a href="employeeinsert">Create New Employee</a>   --->
+         <a class="btn btn-success btn-sm" href="/addemployee" >Create New Employee</a>
+     </div>
+{% endblock %}
+
+
